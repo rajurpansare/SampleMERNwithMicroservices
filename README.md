@@ -1211,38 +1211,30 @@ The following screenshots should be captured for the assignment.
 ```text
 sample-mern-gcp-kubernetes/
 │
-├── README.md
-│
-├── docker/
-│   ├── helloService.Dockerfile
-│   ├── profileService.Dockerfile
-│   ├── frontend.Dockerfile
-│   └── nginx.conf
-│
-├── k8s/
-│   ├── namespace.yaml
-│   ├── mongo-secret.yaml
-│   ├── mongo.yaml
-│   ├── hello.yaml
-│   ├── profile.yaml
-│   ├── frontend.yaml
-│   └── hpa.yaml
-│
-└── docs/
-    └── screenshots/
-        ├── 01-gcloud-login.png
-        ├── 02-gcp-project.png
-        ├── 03-artifact-registry.png
-        ├── 04-docker-images.png
-        ├── 05-gke-cluster.png
-        ├── 06-kubectl-nodes.png
-        ├── 07-pods.png
-        ├── 08-services.png
-        ├── 09-mongodb.png
-        ├── 10-pvc.png
-        ├── 11-hpa.png
-        ├── 12-frontend.png
-        └── 13-github.png
+├── backend
+│   ├── helloService
+│   └── profileService
+├── docs
+│   └── screenshots
+├── frontend
+│   ├── build
+│   ├── Dockerfile
+│   ├── nginx.conf
+│   ├── node_modules
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   ├── README.md
+│   └── src
+├── k8s
+│   ├── frontend.yaml
+│   ├── hello.yaml
+│   ├── hpa.yaml
+│   ├── mongo-secret.yaml
+│   ├── mongo.yaml
+│   └── profile.yaml
+└── README.md
+
 ```
 
 ---
