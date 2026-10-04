@@ -30,7 +30,7 @@ https://github.com/UnpredictablePrashant/SampleMERNwithMicroservices
 Assignment repository:
 
 ```text
-https://github.com/YOUR_GITHUB_USERNAME/sample-mern-gcp-kubernetes
+https://github.com/rajurpansare/SampleMERNwithMicroservices
 ```
 
 Replace `YOUR_GITHUB_USERNAME` with your GitHub username.
