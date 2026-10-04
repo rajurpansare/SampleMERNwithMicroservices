@@ -33,7 +33,6 @@ Assignment repository:
 https://github.com/rajurpansare/SampleMERNwithMicroservices
 ```
 
-Replace `YOUR_GITHUB_USERNAME` with your GitHub username.
 
 ---
 
@@ -630,7 +629,7 @@ docker build \
 Check images:
 
 ```bash
-docker images | grep -E 'hello-service|profile-service|frontend'
+docker images | grep -E 'hello|profile|frontend'
 ```
 
 ---
@@ -641,14 +640,14 @@ Tag hello service:
 
 ```bash
 docker tag hello-service:1.0 \
-"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/hello-service:1.0"
+"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/hello:1.0"
 ```
 
 Tag profile service:
 
 ```bash
 docker tag profile-service:1.0 \
-"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/profile-service:1.0"
+"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/profile:1.0"
 ```
 
 Tag frontend:
@@ -672,14 +671,14 @@ Push hello service:
 
 ```bash
 docker push \
-"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/hello-service:1.0"
+"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/hello:1.0"
 ```
 
 Push profile service:
 
 ```bash
 docker push \
-"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/profile-service:1.0"
+"${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/profile:1.0"
 ```
 
 Push frontend:
@@ -800,11 +799,11 @@ kubectl get pvc -n "$NAMESPACE"
 Set image variables:
 
 ```bash
-export HELLO_IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/hello-service:1.0"
+export HELLO_IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/hello:1.0"
 ```
 
 ```bash
-export PROFILE_IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/profile-service:1.0"
+export PROFILE_IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_REPO}/profile:1.0"
 ```
 
 ```bash
@@ -929,10 +928,10 @@ kubectl get svc -n "$NAMESPACE"
 Expected services:
 
 ```text
-hello-service
-profile-service
-mongo-service
-frontend-service
+hello
+profile
+mongo
+frontend
 ```
 
 The frontend service is configured as:
@@ -948,7 +947,7 @@ LoadBalancer
 Run:
 
 ```bash
-kubectl get service frontend-service -n "$NAMESPACE"
+kubectl get service frontend -n "$NAMESPACE"
 ```
 
 Initially:
@@ -962,13 +961,13 @@ Wait a few minutes.
 Run again:
 
 ```bash
-kubectl get service frontend-service -n "$NAMESPACE"
+kubectl get service frontend -n "$NAMESPACE"
 ```
 
 Once an external IP appears:
 
 ```bash
-kubectl get service frontend-service \
+kubectl get service frontend \
 -n "$NAMESPACE" \
 -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
@@ -993,7 +992,7 @@ kubectl run curl-test \
 --rm -it \
 --restart=Never \
 --image=curlimages/curl:8.10.1 \
--- curl -s http://hello-service:3001/health
+-- curl -s http://hello:3001/health
 ```
 
 Expected:
@@ -1014,7 +1013,7 @@ kubectl run curl-test-profile \
 --rm -it \
 --restart=Never \
 --image=curlimages/curl:8.10.1 \
--- curl -s http://profile-service:3002/health
+-- curl -s http://profile:3002/health
 ```
 
 Expected:
@@ -1030,13 +1029,13 @@ Expected:
 Hello service:
 
 ```bash
-kubectl logs deployment/hello-service -n "$NAMESPACE"
+kubectl logs deployment/hello -n "$NAMESPACE"
 ```
 
 Profile service:
 
 ```bash
-kubectl logs deployment/profile-service -n "$NAMESPACE"
+kubectl logs deployment/profile -n "$NAMESPACE"
 ```
 
 Frontend:
@@ -1080,7 +1079,7 @@ kubectl top pods -n "$NAMESPACE"
 Scale hello service to three replicas:
 
 ```bash
-kubectl scale deployment hello-service \
+kubectl scale deployment hello \
 --replicas=3 \
 -n "$NAMESPACE"
 ```
@@ -1090,13 +1089,13 @@ Check:
 ```bash
 kubectl get pods \
 -n "$NAMESPACE" \
--l app=hello-service
+-l app=hello
 ```
 
 Return to two replicas:
 
 ```bash
-kubectl scale deployment hello-service \
+kubectl scale deployment hello \
 --replicas=2 \
 -n "$NAMESPACE"
 ```
@@ -1134,12 +1133,12 @@ kubectl get events \
 ## Check deployment rollout
 
 ```bash
-kubectl rollout status deployment/hello-service \
+kubectl rollout status deployment/hello \
 -n "$NAMESPACE"
 ```
 
 ```bash
-kubectl rollout status deployment/profile-service \
+kubectl rollout status deployment/profile\
 -n "$NAMESPACE"
 ```
 
@@ -1151,12 +1150,12 @@ kubectl rollout status deployment/frontend \
 ## Check images
 
 ```bash
-kubectl describe deployment hello-service \
+kubectl describe deployment hello \
 -n "$NAMESPACE" | grep -i image
 ```
 
 ```bash
-kubectl describe deployment profile-service \
+kubectl describe deployment profile \
 -n "$NAMESPACE" | grep -i image
 ```
 
@@ -1289,7 +1288,7 @@ git commit -m "Deploy MERN application on GKE"
 Add GitHub remote:
 
 ```bash
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/sample-mern-gcp-kubernetes.git
+git remote add origin https://github.com/rajurpansare/SampleMERNwithMicroservices
 ```
 
 Push:
@@ -1315,7 +1314,7 @@ Practice Assignment - GCP
 
 GitHub Repository:
 
-https://github.com/YOUR_GITHUB_USERNAME/sample-mern-gcp-kubernetes
+https://github.com/rajurpansare/SampleMERNwithMicroservices
 ```
 
 Then:
